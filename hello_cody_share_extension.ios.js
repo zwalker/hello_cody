@@ -95,11 +95,12 @@ class HelloCodyShareExtension extends Component {
                 <Text>Close</Text>
                 <Text>type: { this.state.type }</Text>
                 <Text>value: { this.state.value }</Text>
-                <Picker selectedValue={ this.state.tags } onValueChange={ this.selectTag.bind(this) }>
-                  { pickerItems }
-                </Picker>
                 <Text>poop</Text>
               </TouchableOpacity>
+            </View>
+            <View style={{ backgroundColor: 'grey', flexDirection: 'row', alignItems: 'center', padding: 10, height: 50 }}>
+                <Text style={{ fontWeight: 'bold', textAlign: 'left', flex: 1 }}>Tag</Text>
+                <Text style={{ textAlign: 'right' }}>Blah ></Text>
             </View>
           </View>
         </View>
