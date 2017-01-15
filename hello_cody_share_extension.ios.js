@@ -8,12 +8,15 @@ import {
   TextInput,
   View,
   Picker,
-  TouchableOpacity
+  TouchableOpacity,
+  Navigator
 } from 'react-native'
 
 class HelloCodyShareExtension extends Component {
   constructor(props, context) {
     super(props, context)
+
+    this.nav = null;
     this.state = {
       isOpen: true,
       type: '',
@@ -78,6 +81,23 @@ class HelloCodyShareExtension extends Component {
   }
 
   render() {
+    return (
+      <Navigator renderScene={(route, nav) => this.renderScene(route, nav)} />
+    );
+  }
+
+  renderScene(route, nav) {
+    this.nav = nav;
+    route = route || {id: "Share"};
+    switch (route.id) {
+      case "Share":
+        return this.renderShareView(nav);
+      default:
+        return this.renderShareView(nav);
+    }
+  }
+
+  renderShareView(nav) {
     console.log(Object.entries(this.state.tags), 'butthole');
     let pickerItems = Object.entries(this.state.tags).map(([tag, tagId]) => (<Picker.Item label={ tag } value={ tagId } key={ tagId }/>));
     return (
