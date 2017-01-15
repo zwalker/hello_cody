@@ -1,13 +1,11 @@
 import React, { Component } from 'react'
 import Modal from 'react-native-modalbox'
 import ShareExtension from 'react-native-share-extension'
+import ShareView from './share_view'
 
 import {
-  Button,
   Text,
-  TextInput,
   View,
-  Picker,
   TouchableOpacity,
   Navigator,
   ListView
@@ -70,12 +68,6 @@ class HelloCodyShareExtension extends Component {
     }
   }
 
-  selectTag(tagId) {
-    console.log('selected tag', tagId);
-    this.setState({
-      selectedTag: tagId
-    });
-  }
 
   onClose() {
     ShareExtension.close();
@@ -107,35 +99,15 @@ class HelloCodyShareExtension extends Component {
   }
 
   renderShareView(nav) {
-    console.log(Object.entries(this.state.tags), 'butthole');
-    let pickerItems = Object.entries(this.state.tags).map(([tag, tagId]) => (<Picker.Item label={ tag } value={ tagId } key={ tagId }/>));
     return (
-      <Modal backdrop={false}
-      style={{ backgroundColor: 'transparent' }} position="center" isOpen={this.state.isOpen} onClosed={this.onClose}>
-        <View style={{ alignItems: 'center', justifyContent:'center', flex: 1 }}>
-          <View style={{ borderColor: 'grey', borderRadius: 10, borderWidth: 1, backgroundColor: 'white', height: 200, width: 300, overflow: 'hidden' }}>
-            <View style={{ backgroundColor: 'grey', height: 50, padding: 10, flexDirection: 'row', justifyContent: 'flex-start', alignItems: 'center' }}>
-              <Text style={{ width: 50, textAlign: 'left' }} onPress={ this.closing.bind(this) }>Cancel</Text>
-              <Text style={{ flex: 1, textAlign: 'center', fontWeight: 'bold' }}>Hello Cody</Text>
-              <Text style={{ width: 50, textAlign: 'right' }} onPress={ this.closing.bind(this) }>Post</Text>
-            </View>
-            <View>
-              <TouchableOpacity onPress={this.closing.bind(this)}>
-                <Text>Close</Text>
-                <Text>type: { this.state.type }</Text>
-                <Text>value: { this.state.value }</Text>
-                <Text>poop</Text>
-              </TouchableOpacity>
-            </View>
-            <View style={{ backgroundColor: 'grey', padding: 10, height: 50 }} >
-              <TouchableOpacity style={{ flexDirection: 'row', alignItems: 'center' }} onPress={ () => nav.push({ id: "SelectTag" }) } >
-                <Text style={{ fontWeight: 'bold', textAlign: 'left', flex: 1 }}>Tag</Text>
-                <Text style={{ textAlign: 'right' }}>{ this.state.selectedTag || Object.keys(this.state.tags)[0] } ></Text>
-              </TouchableOpacity>
-            </View>
-          </View>
-        </View>
-      </Modal>
+      <ShareView nav={nav} 
+                 type={this.state.type}
+                 value={this.state.value}
+                 selectedTag={this.state.selectedTag}
+                 tags={this.state.tags}
+                 isOpen={this.state.isOpen}
+                 onClose={this.onClose.bind(this)}
+                 closing={this.closing.bind(this)} />
     )
   }
 
