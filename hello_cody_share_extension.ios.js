@@ -34,7 +34,12 @@ class HelloCodyShareExtension extends Component {
         body: JSON.stringify({
           'Big Bird': 1,
           'Hobbit': 2,
-          'Batman': 3
+          'Batman': 3,
+          'Joe Shmo': 4,
+          'Superman': 5,
+          'Garbage Man': 6,
+          'Mister Rogers': 7,
+          'Ms Rogers': 8
         })
       })
     });
