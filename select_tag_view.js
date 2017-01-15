@@ -25,7 +25,7 @@ class SelectTagView extends Component {
     console.log("rendering", rowData);
     return (
       <TouchableOpacity onPress={ () => this.handleTagSelected(rowData) }>
-        <View style={{ height: 25, backgroundColor: 'blue', flexDirection: 'row', alignItems: 'center', paddingLeft: 5 }}>
+        <View style={{ height: 30, backgroundColor: '#D3D3D3', flexDirection: 'row', alignItems: 'center', paddingLeft: 5 }}>
           <Text style={{ textAlign: 'center' }}>{rowData}</Text>
         </View>
       </TouchableOpacity>
