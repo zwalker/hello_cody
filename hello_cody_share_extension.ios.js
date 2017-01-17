@@ -5,7 +5,8 @@ import ShareView from './share_view'
 import SelectTagView from './select_tag_view'
 
 import {
-  Navigator
+  Navigator,
+  AsyncStorage
 } from 'react-native'
 
 class HelloCodyShareExtension extends Component {
@@ -39,6 +40,10 @@ class HelloCodyShareExtension extends Component {
   }
 
   async componentDidMount() {
+    AsyncStorage.getItem("lastSelectedTag").then((value) => {
+      this.setState({"selectedTag": value});
+    }).done();
+
     try {
       const { type, value } = await ShareExtension.data();
       this.fetchTags()
@@ -69,6 +74,9 @@ class HelloCodyShareExtension extends Component {
   }
 
   closing() {
+    if(this.state.selectedTag) {
+      AsyncStorage.setItem('lastSelectedTag', this.state.selectedTag);
+    }
     this.setState({
       isOpen: false
     });
