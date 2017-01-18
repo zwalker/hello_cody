@@ -3,6 +3,7 @@ import Modal from 'react-native-modalbox'
 import ShareExtension from 'react-native-share-extension'
 import ShareView from './share_view'
 import SelectTagView from './select_tag_view'
+import KanbanApi from './kanban_api'
 
 import {
   Navigator,
@@ -74,12 +75,28 @@ class HelloCodyShareExtension extends Component {
   }
 
   closing() {
+    console.log('closing', this.state.selectedTag)
     if(this.state.selectedTag) {
+      console.log('storing last selected tag', this.state.selectedTag);
       AsyncStorage.setItem('lastSelectedTag', this.state.selectedTag);
     }
     this.setState({
       isOpen: false
     });
+  }
+
+  onPost() {
+    console.log('onPost', this.state.value, this.state.selectedTag);
+    let newCard = {
+      id: Date.now(),
+      title: this.state.selectedTag,
+      description: this.state.value,
+      status: 'todo',
+      color: '#c9c9c9',
+      tasks: []
+    };
+    KanbanApi.createCard(newCard);
+    this.closing();
   }
 
   render() {
@@ -114,7 +131,8 @@ class HelloCodyShareExtension extends Component {
                  tags={this.state.tags}
                  isOpen={this.state.isOpen}
                  onClose={this.onClose.bind(this)}
-                 closing={this.closing.bind(this)} />
+                 closing={this.closing.bind(this)}
+                 onPost={this.onPost.bind(this)} />
     )
   }
 }

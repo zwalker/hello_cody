@@ -23,7 +23,7 @@ class ShareView extends Component {
             <View style={{ backgroundColor: 'grey', height: 50, padding: 10, flexDirection: 'row', justifyContent: 'flex-start', alignItems: 'center' }}>
               <Text style={{ width: 50, textAlign: 'left' }} onPress={ this.props.closing }>Cancel</Text>
               <Text style={{ flex: 1, textAlign: 'center', fontWeight: 'bold' }}>Hello Cody</Text>
-              <Text style={{ width: 50, textAlign: 'right' }} onPress={ this.props.closing }>Post</Text>
+              <Text style={{ width: 50, textAlign: 'right' }} onPress={ this.props.onPost }>Post</Text>
             </View>
             <View style={{height: 100, backgroundColor: '#D3D3D3' }} >
               <Text>type: { this.props.type }</Text>
