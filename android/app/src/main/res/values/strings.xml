@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">hello_cody</string>
+    <string name="title_activity_share">Post to hello_cody</string>
 </resources>
